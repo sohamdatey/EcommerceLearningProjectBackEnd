@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- Mapper.java namespace -->
+<mapper namespace="com.onlinerestaurant.foodie.mappers.UserMapper">
+<!-- User.java namespace -->
+    <resultMap type="com.onlinerestaurant.foodie.model.User" id="User">
+        <result property="id" column="id"/>   
+        <result property="userName" column="username"/>   
+        <result property="email" column="email"/>   
+    </resultMap>
+     
+    <select id="selectAllUsers" resultMap="User">
+        SELECT * FROM userdemo;
+    </select>
+    
+    <select id="selectUser" resultMap="User" parameterType="int">
+        SELECT * FROM userdemo  where id = #{id}
+    </select>
+    
+	<!-- public int insertUser(User User); -->
+    
+</mapper>
