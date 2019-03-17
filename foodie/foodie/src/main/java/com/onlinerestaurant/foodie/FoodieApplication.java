@@ -1,13 +1,13 @@
-package com.onlinerestaurant.india;
+package com.onlinerestaurant.foodie;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IndiaApplication {
+public class FoodieApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IndiaApplication.class, args);
+		SpringApplication.run(FoodieApplication.class, args);
 	}
 
 }

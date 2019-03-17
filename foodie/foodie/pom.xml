@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.onlinerestaurant</groupId>
-	<artifactId>india</artifactId>
+	<artifactId>foodie</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>india</name>
+	<name>foodie</name>
 	<description>online restaurant management system</description>
 
 	<properties>
