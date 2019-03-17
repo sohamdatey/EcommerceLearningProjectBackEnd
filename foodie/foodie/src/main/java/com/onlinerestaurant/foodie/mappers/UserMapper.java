@@ -13,5 +13,4 @@ public interface UserMapper {
 	public User selectUser(@Param("id") int id);
 
 	public int insertUser(User User);
-
 }
