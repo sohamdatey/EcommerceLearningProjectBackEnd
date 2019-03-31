@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinerestaurant.foodie.dao.UserDao;
 import com.onlinerestaurant.foodie.model.User;
+import com.onlinerestaurant.foodie.model.UserDeliveryContact;
 
 
 @RestController
@@ -39,8 +40,25 @@ public class UserController {
 		return userDao.updateUser(user);
     }
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json")
-	int deleteUser(@RequestParam(value = "userId") int userId) {
-		return userDao.deleteUser(userId);
+	int deleteUser(@RequestBody User user) {
+		return userDao.deleteUser(user.getUserId());
     }
+	
+	
+	@RequestMapping(value = "/insertUserDeliveryContact", method = RequestMethod.POST, produces = "application/json")
+	int insertUserDeliveryContact(@RequestBody UserDeliveryContact userDeliveryContact) {
+		return userDao.insertUserDeliveryContact(userDeliveryContact);
+    }
+	
+	@RequestMapping(value = "/updateUserDeliveryContact", method = RequestMethod.POST, produces = "application/json")
+	int updateUserDeliveryContact(@RequestBody UserDeliveryContact userDeliveryContact) {
+		return userDao.updateUserDeliveryContact(userDeliveryContact);
+    }
+	
+	@RequestMapping(value = "/deleteUserDeliveryContact", method = RequestMethod.POST, produces = "application/json")
+	int deleteUserDeliveryContact(@RequestBody UserDeliveryContact userDeliveryContact) {
+		return userDao.deleteUserDeliveryContact(userDeliveryContact.getUserDeliveryContactId());
+    }
+	
 
 }

@@ -1,6 +1,7 @@
 package com.onlinerestaurant.foodie.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 	
@@ -10,6 +11,8 @@ public class User {
 	private String password;
 	private Date dob;
 	private String profileImage;
+	private List<UserDeliveryContact> deliveryContacts;
+	
 	
 	public int getUserId() {
 		return userId;
@@ -47,6 +50,13 @@ public class User {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+	public List<UserDeliveryContact> getDeliveryContacts() {
+		return deliveryContacts;
+	}
+	public void setDeliveryContacts(List<UserDeliveryContact> deliveryContacts) {
+		this.deliveryContacts = deliveryContacts;
+	}
+	
 	
 	
 	

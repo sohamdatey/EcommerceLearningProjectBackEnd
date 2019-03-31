@@ -6,45 +6,84 @@
 	<!-- User.java name space -->
 
 	<resultMap type="com.onlinerestaurant.foodie.model.User" id="User">
-		<result property="userId" column="userid" />
+		<!-- <id property="userId" column="userId" javaType="integer" /> -->
+		<result property="userId" column="userid" /> 
 		<result property="userName" column="username" />
 		<result property="email" column="email" />
 		<result property="password" column="password" />
 		<result property="dob" column="dob" />
 		<result property="profileImage" column="profileimage" />
+		<collection property="deliveryContacts" ofType="com.onlinerestaurant.foodie.model.UserDeliveryContact"
+			autoMapping="true">
+			<!-- <id property="userId" column="userId" javaType="integer" /> -->
+		</collection>
 	</resultMap>
 
 	<select id="getAllUsers" resultMap="User" parameterType="int">
 		SELECT *
-		FROM user;
+		FROM user natural join userdeliverycontact order by userId;
 	</select>
 
 	<select id="getUserForId" resultMap="User" parameterType="int">
-		SELECT * FROM user where userid = #{userId}
+		SELECT *
+		FROM user natural join userdeliverycontact where userid = #{userId}
 	</select>
 
-	<insert id="createUser" useGeneratedKeys="true" parameterType="com.onlinerestaurant.foodie.model.User" >
-		insert into user
+	<insert id="createUser" useGeneratedKeys="true"
+		parameterType="com.onlinerestaurant.foodie.model.User">
+		insert into
+		user
 		(userName,email,password,dob,profileImage)
 		values
 		(#{user.userName},#{user.email},#{user.password},#{user.dob},#{user.profileImage})
 	</insert>
-	<!--auto incremented userId in database -->
-
+	
 	<delete id="deleteUser" parameterType="int">
 		delete from user where
 		userId = #{userId}
 	</delete>
 
-	<update id="updateUser"  parameterType="com.onlinerestaurant.foodie.model.User">
+	<update id="updateUser" parameterType="com.onlinerestaurant.foodie.model.User">
 		update user set
-		userName = #{user.userName},
+		userName =
+		#{user.userName},
 		password = #{user.password},
 		email = #{user.email},
 		dob = #{user.dob},
 		profileImage=#{user.profileImage}
-		where userId = #{user.userId}
+		where userId =
+		#{user.userId}
 	</update>
-
+	
+	
+	<insert id="insertUserDeliveryContact" useGeneratedKeys="true"
+		parameterType="com.onlinerestaurant.foodie.model.UserDeliveryContact">
+		insert into
+		userDeliveryContact
+		(userId,name,address,contactNo,addressType)
+		values
+		(#{userDeliveryContact.userId},#{userDeliveryContact.name},#{userDeliveryContact.address},#{userDeliveryContact.contactNo},#{userDeliveryContact.addressType})
+	</insert>
+	
+	<delete id="deleteUserDeliveryContact" parameterType="int">
+		delete from userDeliveryContact where
+		userDeliveryContactId = #{userDeliveryContactId}
+	</delete>
+	
+	<delete id="deleteAllUserDeliveryContactsForUserId" parameterType="int">
+		delete from userDeliveryContact where
+		userId = #{userId}
+	</delete>
+	
+	<update id="updateUserDeliveryContact" parameterType="com.onlinerestaurant.foodie.model.UserDeliveryContact">
+		update userDeliveryContact set
+		userId =#{userDeliveryContact.userId},
+		name = #{userDeliveryContact.name},
+		address = #{userDeliveryContact.address},
+		contactNo = #{userDeliveryContact.contactNo},
+		addressType=#{userDeliveryContact.addressType}
+		where
+		userDeliveryContactId = #{userDeliveryContact.userDeliveryContactId}
+	</update>
 
 </mapper>
